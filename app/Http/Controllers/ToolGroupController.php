@@ -24,7 +24,7 @@ class ToolGroupController extends Controller
                 }
                 $name = trim($input['name']);
                 $test = ToolGroups::where('name',$name)->first();
-                if(count($test)==0){
+                if($test->count()==0){
 	                $ToolGroups = new ToolGroups();
 	                $ToolGroups->name = $name;
 	                $ToolGroups->save();
@@ -41,7 +41,7 @@ class ToolGroupController extends Controller
                 }
                 $name = trim($input['name']);
                 $test = ToolGroups::where('name',$name)->first();
-                if(count($test)==0){
+                if($test->count()==0){
                     $ToolGroups = ToolGroups::where('id',$input['id'])->first();
                     $ToolGroups->name = $name;
                     $ToolGroups->save();
