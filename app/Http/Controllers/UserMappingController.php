@@ -23,7 +23,7 @@ class UserMappingController extends Controller
                     return response()->json(['status' => 401,'msg' => $validator->messages()->getMessages()]);
                 }
                 $test = UserMapping::where('toolgroup_id',$input['toolgroup_id'])->where('user_id',$input['user_id'])->first();
-                if($test->count()==0){
+                if(is_null($test) || $test->count()==0){
 	                $UserMapping = new UserMapping();
                     $UserMapping->toolgroup_id = $input['toolgroup_id'];
                     $UserMapping->user_id = $input['user_id'];

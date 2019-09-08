@@ -23,7 +23,9 @@ class ToolController extends Controller
                 }
                 $name = trim($input['name']);
                 $test = Tools::where('name',$name)->where('toolgroup_id',$input['toolgroup_id'])->first();
-                if($test->count()==0){
+                // echo is_null($test);
+                // die();
+                if(is_null($test) || $test->count()==0){
 	                $Tools = new Tools();
 	                $Tools->name = $name;
                     $Tools->purchasedate = $input['purchasedate'];
@@ -43,7 +45,7 @@ class ToolController extends Controller
                 }
                 $name = trim($input['name']);
                 $test = Tools::where('name',$name)->where('toolgroup_id',$input['toolgroup_id'])->first();
-                if($test->count()==0){
+                if(is_null($test) || $test->count()==0){
                     $Tools = Tools::where('id',$input['id'])->first();
                     $Tools->name = $name;
                     $Tools->purchasedate = $input['purchasedate'];

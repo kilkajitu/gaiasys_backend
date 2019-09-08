@@ -19,7 +19,7 @@ class UserController extends Controller
 
       $user = User::where('username',$username)->first();
 
-      if($user->count()!=0 && password_verify($password, $user->password)){
+      if(!is_null($user) && $user->count()!=0 && password_verify($password, $user->password)){
 
         $factory = JWTFactory::addClaims([
             'id'=>$user->id,
@@ -46,7 +46,7 @@ class UserController extends Controller
 
       $user = User::where('username',$username)->first();
 
-      if($user->count()==0){
+      if(is_null($user) || $user->count()==0){
 
         $new_user = new User();
         $new_user->name = $request->input('name');
